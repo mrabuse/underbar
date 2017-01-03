@@ -110,7 +110,7 @@
   _.uniq = function(array, sorted, iterator) {
   	var uniqueValues = [];
 
-  	sorted === undefined ? sorted = false : sorted = arguments[2];
+  	sorted === undefined ? sorted = false : sorted = arguments[1];
 
   	if(sorted === false) {
   		array.sort();
