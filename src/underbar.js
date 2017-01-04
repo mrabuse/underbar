@@ -116,14 +116,21 @@
   		array.sort();
   	}
 
+  	if(iterator === undefined) {
+  		iterator = function(value) {
+  			return value;
+  		};
+  	}
   	_.each(array, function(value, index, collection) {
   		var currentValue = value;
   		var same = false;
+
   		_.each(uniqueValues, function(value, index, collection) {
-  			if(currentValue === value) {
+  			if(iterator(currentValue) === iterator(value)) {
   				same = true;
   			}
   		});
+
   		if(!same) {
   			uniqueValues.push(currentValue);
   		}
@@ -186,6 +193,7 @@
   //   }); // should be 5, regardless of the iterator function passed in
   //          No accumulator is given so the first element is used.
   _.reduce = function(collection, iterator, accumulator) {
+ 
   };
 
   // Determine if the array or object contains a given value (using `===`).
