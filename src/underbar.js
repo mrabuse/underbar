@@ -290,6 +290,17 @@
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+
+    for(var i = 0; i < arguments.length; i++) {
+      var source = arguments[i];
+      for(var property in source) {
+        if(obj[property] === undefined) {
+          obj[property] = source[property];
+        }
+      }
+    }
+
+    return obj; 
   };
 
 
