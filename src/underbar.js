@@ -343,8 +343,19 @@
   // _.memoize should return a function that, when called, will check if it has
   // already computed the result for the given argument and return that value
   // instead if possible.
-  _.memoize = function(func) {
-  };
+
+  _.memoize = function(func) { //Doing this was a doozy for me, so I'm going to write out all of my thinking
+    var runArguments = {}; //creates an always-accessible global object to hold results and arguments of run functions
+
+    return function() { // returns a function so you can access the arguments for the function you're memoize-ing
+      var args = JSON.stringify(Array.prototype.slice.call(arguments)); //turns args into an array which can be used as a key
+      if(!runArguments[args]) {
+        runArguments[args] = func.apply(this, arguments);
+      }
+
+      return runArguments[args];
+    };
+  }; 
 
   // Delays a function for the given number of milliseconds, and then calls
   // it with the arguments supplied.
@@ -366,7 +377,7 @@
   // TIP: This function's test suite will ask that you not modify the original
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
-  _.shuffle = function(array) {
+  _.shuffle = function(array) {  
   };
 
 
