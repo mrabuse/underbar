@@ -369,7 +369,7 @@
     var funcWithArg = function () {
       func.apply(this, arg);
     };
-    
+
     setTimeout(funcWithArg, wait);
   };
 
@@ -385,6 +385,17 @@
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {  
+    var tempArray = array.slice();
+    var mixArray = [];
+
+    while (tempArray.length > 0) {
+      var index = Math.floor(Math.random() * tempArray.length);
+      var placeholder = tempArray.splice(index, 1);
+      var currentValue = placeholder[0];
+      mixArray.push(currentValue);
+    }
+
+    return mixArray;
   };
 
 
